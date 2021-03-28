@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/holderItem"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+
+    android:layout_margin="10dp"
+    android:background="@drawable/back">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <TextView
+           android:id="@+id/nameTxt"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"
+           android:text="Имя : "
+           android:textSize="20dp"
+           android:textStyle="bold"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent" />
+
+
+       <TextView
+           android:id="@+id/nameItem"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"
+           android:layout_marginStart="68dp"
+           android:layout_marginTop="16dp"
+           android:textSize="20dp"
+           app:layout_constraintBottom_toBottomOf="@id/nameTxt"
+           app:layout_constraintStart_toEndOf="@id/nameTxt"
+           app:layout_constraintTop_toTopOf="@id/nameTxt"
+           tools:text="Kairat" />
+
+       <TextView
+           android:id="@+id/numberTxt"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:text="Номер: "
+           android:textSize="20dp"
+           android:textStyle="bold"
+           app:layout_constraintStart_toStartOf="@id/nameTxt"
+           app:layout_constraintTop_toBottomOf="@id/nameTxt" />
+
+       <TextView
+           android:id="@+id/numberItem"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"
+           android:textSize="20dp"
+           app:layout_constraintBottom_toBottomOf="@id/numberTxt"
+           app:layout_constraintStart_toEndOf="@id/numberTxt"
+           app:layout_constraintTop_toTopOf="@id/numberTxt"
+           tools:text="709089032" />
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
