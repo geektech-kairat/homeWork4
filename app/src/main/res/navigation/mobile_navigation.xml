@@ -28,9 +28,9 @@
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.lesson22.ui.profile.ProfileFragment"
+        android:name="com.example.lesson22.ui.form.FormFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_form" >
         <action
             android:id="@+id/action_profileFragment_to_navigation_home2"
             app:destination="@id/navigation_home" />

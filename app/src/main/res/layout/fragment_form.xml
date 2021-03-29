@@ -4,40 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
+    tools:context=".ui.form.FormFragment">
 
     <EditText
-
         android:id="@+id/nameItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-        android:maxLength="20"
         android:layout_marginTop="20dp"
         android:hint="Заголовок "
         android:inputType="textPersonName"
+        android:maxLength="20"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:imeOptions="actionNext"
-
         android:id="@+id/numberItem"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="20dp"
         android:hint="описание "
+        android:imeOptions="actionNext"
         android:inputType="textMultiLine"
         app:layout_constraintTop_toBottomOf="@+id/nameItem" />
 
     <Button
+        android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/numberItem"
         android:layout_marginHorizontal="60dp"
-        android:text="сохранить"
         android:layout_marginTop="20dp"
-        android:id="@+id/saveButton"/>
+        android:text="сохранить"
+        app:layout_constraintTop_toBottomOf="@id/numberItem" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
