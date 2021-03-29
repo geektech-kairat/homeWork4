@@ -1,6 +1,10 @@
 package com.example.lesson22.ui.form;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -8,18 +12,14 @@ import androidx.fragment.app.FragmentResultListener;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
-
 import com.example.lesson22.databinding.FragmentFormBinding;
 
 public class FormFragment extends Fragment {
-    private @NonNull FragmentFormBinding binding;
+    private @NonNull
+    FragmentFormBinding binding;
     private NavController navController;
+    private String s = "Поле не должен быть пустым ";
+
 
     private int id;
 
@@ -37,17 +37,14 @@ public class FormFragment extends Fragment {
     public void initListeners() {
 
         binding.saveButton.setOnClickListener(v -> {
-            if (binding.nameItem.getText().toString().isEmpty() && binding.nameItem.getText().toString().isEmpty()){
-                binding.nameItem.setError("Поле не должен быть пустым ");
-                binding.numberItem.setError("Поле не должен быть пустым ");
-            }
-            else if (binding.nameItem.getText().toString().isEmpty()){
-                binding.nameItem.setError("Поле не должен быть пустым ");
-            }else if (binding.nameItem.getText().toString().isEmpty()){
-                binding.numberItem.setError("Поле не должен быть пустым ");
-            }
-
-            else {
+            if (binding.nameItem.getText().toString().isEmpty() && binding.numberItem.getText().toString().isEmpty()) {
+                binding.nameItem.setError(s);
+                binding.numberItem.setError(s);
+            } else if (binding.nameItem.getText().toString().isEmpty()) {
+                binding.nameItem.setError(s);
+            } else if (binding.numberItem.getText().toString().isEmpty()) {
+                binding.numberItem.setError(s);
+            } else {
                 Bundle bundle = new Bundle();
                 bundle.putString("name", binding.nameItem.getText().toString());
                 bundle.putString("number", binding.numberItem.getText().toString());
@@ -60,7 +57,7 @@ public class FormFragment extends Fragment {
 
     }
 
-    public void getData(){
+    public void getData() {
         getParentFragmentManager().setFragmentResultListener("2", getViewLifecycleOwner(), new FragmentResultListener() {
 
 
@@ -74,6 +71,7 @@ public class FormFragment extends Fragment {
             }
         });
     }
+
     private void close() {
         navController.navigateUp();
     }
