@@ -25,7 +25,13 @@ import com.example.lesson22.ui.home.HomeAdapter.HomeAdapter;
 import com.example.lesson22.ui.home.HomeAdapter.HomeModel;
 import com.example.lesson22.ui.home.HomeAdapter.Listen;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements Listen {
@@ -37,12 +43,10 @@ public class HomeFragment extends Fragment implements Listen {
     private List<HomeModel> list = new ArrayList<>();
 
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         homeAdapter = new HomeAdapter(this);
-
 
 
     }
@@ -68,13 +72,13 @@ public class HomeFragment extends Fragment implements Listen {
                         int id = result.getInt("id");
 
                         HomeModel model = homeAdapter.getModelToId(id);
-
                         if (model != null) {
                             model.setName(a);
                             model.setNumber(b);
                             homeAdapter.notifyDataSetChanged();
                         } else {
                             homeAdapter.addList(new HomeModel(a, b));
+
                         }
                     }
                 });
