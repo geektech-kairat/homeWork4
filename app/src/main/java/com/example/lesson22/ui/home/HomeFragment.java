@@ -1,23 +1,16 @@
 package com.example.lesson22.ui.home;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.text.method.Touch;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lesson22.R;
 import com.example.lesson22.databinding.FragmentHomeBinding;
@@ -25,13 +18,7 @@ import com.example.lesson22.ui.home.HomeAdapter.HomeAdapter;
 import com.example.lesson22.ui.home.HomeAdapter.HomeModel;
 import com.example.lesson22.ui.home.HomeAdapter.Listen;
 
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements Listen {
@@ -58,11 +45,12 @@ public class HomeFragment extends Fragment implements Listen {
         binding.rv.setAdapter(homeAdapter);
 
         click();
-        setFragmentListener();
+        getDataInForm();
         return binding.getRoot();
     }
 
-    private void setFragmentListener() {
+    private void getDataInForm() {
+        //добавление
         getParentFragmentManager().setFragmentResultListener("key",
                 getViewLifecycleOwner(), new FragmentResultListener() {
                     @Override
@@ -84,15 +72,9 @@ public class HomeFragment extends Fragment implements Listen {
                 });
     }
 
-    public void click() {
-        binding.fabAdd.setOnClickListener(v -> {
-            navController.navigate(R.id.action_navigation_home_to_profileFragment);
-        });
-
-    }
-
     @Override
-    public void listener(HomeModel homeModel, int position) {
+    //ОТПРАВЛЕНИЕ ДАННЫХ
+    public void setDataForForm(HomeModel homeModel, int position) {
         Bundle bundle = new Bundle();
 
         bundle.putString("name1", homeModel.getName());
@@ -100,5 +82,12 @@ public class HomeFragment extends Fragment implements Listen {
         bundle.putInt("id", homeModel.getId());
         getParentFragmentManager().setFragmentResult("2", bundle);
         navController.navigate(R.id.action_navigation_home_to_profileFragment);
+    }
+
+    public void click() {
+        binding.fabAdd.setOnClickListener(v -> {
+            navController.navigate(R.id.action_navigation_home_to_profileFragment);
+        });
+
     }
 }
