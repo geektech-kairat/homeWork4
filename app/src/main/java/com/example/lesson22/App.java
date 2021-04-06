@@ -1,12 +1,12 @@
-package com.example.lesson22.ui;
+package com.example.lesson22;
 
 import android.app.Application;
 
 import com.example.lesson22.ui.sharePrefs.Share;
 
 public class App extends Application {
-    private static App instance;
-    private static Share share;
+    public static  App instance;
+    public static  Share share;
     @Override
     public void onCreate() {
         super.onCreate();

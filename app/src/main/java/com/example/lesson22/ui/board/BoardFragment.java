@@ -1,66 +1,121 @@
 package com.example.lesson22.ui.board;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.lesson22.R;
+import com.example.lesson22.databinding.FragmentBoardBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BoardFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class BoardFragment extends Fragment {
+import org.jetbrains.annotations.NotNull;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class BoardFragment extends Fragment implements Click {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private FragmentBoardBinding binding;
+    private NavController navController;
+    private BoardAdapter boardAdapter;
 
-    public BoardFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BoardFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BoardFragment newInstance(String param1, String param2) {
-        BoardFragment fragment = new BoardFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        boardAdapter = new BoardAdapter(this::click);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_board, container, false);
+
+        navController = NavHostFragment.findNavController(this);
+        binding = FragmentBoardBinding.inflate(inflater, container, false);
+//        App.share.saveBoardShown(false);
+
+        binding.pager.setAdapter(boardAdapter);
+        binding.pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                if (position == 2) {
+                    binding.getIt.setVisibility(View.VISIBLE);
+                    binding.backBtn.setVisibility(View.VISIBLE);
+                    binding.nextBtn.setVisibility(View.INVISIBLE);
+                } else if (position == 0) {
+                    binding.backBtn.setVisibility(View.INVISIBLE);
+                    binding.getIt.setVisibility(View.INVISIBLE);
+                } else {
+                    binding.backBtn.setVisibility(View.VISIBLE);
+                    binding.nextBtn.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
+
+        clickItem();
+
+        binding.indicator.setViewPager(binding.pager);
+        boardAdapter.registerAdapterDataObserver(binding.indicator.getAdapterDataObserver());
+
+        onBackPressedCallBack();
+
+        return binding.getRoot();
     }
+
+    private void onBackPressedCallBack() {
+        requireActivity().getOnBackPressedDispatcher().
+                addCallback(
+                        getViewLifecycleOwner(),
+                        new OnBackPressedCallback(true) {
+                            @Override
+                            public void handleOnBackPressed() {
+                                alert();
+                            }
+                        });
+    }
+
+    @Override
+    public void click() {
+
+    }
+
+    public void alert() {
+        AlertDialog.Builder adg = new AlertDialog.Builder(binding.getRoot().getContext());
+        String positive = "Да";
+        String negative = "Нет";
+        adg.setMessage("Вы хотите выйти ?");
+        adg.setPositiveButton(positive, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                requireActivity().finish();
+            }
+        });
+        adg.setNegativeButton(negative, null);
+        adg.show();
+    }
+
+    public void clickItem() {
+        binding.nextBtn.setOnClickListener(v -> {
+            binding.pager.setCurrentItem(binding.pager.getCurrentItem() + 1);
+        });
+
+        binding.backBtn.setOnClickListener(v -> {
+            binding.pager.setCurrentItem(binding.pager.getCurrentItem() - 1);
+
+        });
+        binding.getIt.setOnClickListener(v -> {
+            navController.navigateUp();
+            Log.e("TAG", "onPageSelected:  ");
+        });
+    }
+
 }

@@ -1,10 +1,13 @@
 package com.example.lesson22.ui.home;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -46,6 +49,16 @@ public class HomeFragment extends Fragment implements Listen {
 
         click();
         getDataInForm();
+
+        requireActivity().getOnBackPressedDispatcher().
+                addCallback(
+                        getViewLifecycleOwner(),
+                        new OnBackPressedCallback(true) {
+                            @Override
+                            public void handleOnBackPressed() {
+                                alert();
+                            }
+                        });
         return binding.getRoot();
     }
 
@@ -89,5 +102,20 @@ public class HomeFragment extends Fragment implements Listen {
             navController.navigate(R.id.action_navigation_home_to_profileFragment);
         });
 
+    }
+
+    public void alert() {
+        AlertDialog.Builder adg = new AlertDialog.Builder(binding.getRoot().getContext());
+        String positive = "Да";
+        String negative = "Нет";
+        adg.setMessage("Вы хотите выйти ?");
+        adg.setPositiveButton(positive, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                requireActivity().finish();
+            }
+        });
+        adg.setNegativeButton(negative, null);
+        adg.show();
     }
 }
