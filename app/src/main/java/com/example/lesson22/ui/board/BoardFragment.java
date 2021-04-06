@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.lesson22.App;
 import com.example.lesson22.databinding.FragmentBoardBinding;
 
 import org.jetbrains.annotations.NotNull;
@@ -30,7 +31,7 @@ public class BoardFragment extends Fragment implements Click {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boardAdapter = new BoardAdapter(this::click);
+        boardAdapter = new BoardAdapter(this);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class BoardFragment extends Fragment implements Click {
 
         navController = NavHostFragment.findNavController(this);
         binding = FragmentBoardBinding.inflate(inflater, container, false);
-//        App.share.saveBoardShown(false);
+        App.share.saveBoardShown(true);
 
         binding.pager.setAdapter(boardAdapter);
         binding.pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -54,9 +55,9 @@ public class BoardFragment extends Fragment implements Click {
                     binding.backBtn.setVisibility(View.INVISIBLE);
                     binding.getIt.setVisibility(View.INVISIBLE);
                 } else {
+                    binding.getIt.setVisibility(View.INVISIBLE);
                     binding.backBtn.setVisibility(View.VISIBLE);
                     binding.nextBtn.setVisibility(View.VISIBLE);
-
                 }
             }
         });

@@ -1,5 +1,6 @@
 package com.example.lesson22.ui.profile;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,9 +19,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.lesson22.App;
+import com.example.lesson22.MainActivity;
 import com.example.lesson22.R;
 import com.example.lesson22.databinding.FragmentProfileBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 
 public class ProfileFragment extends Fragment {
@@ -36,39 +41,44 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         navController = NavHostFragment.findNavController(this);
         binding = FragmentProfileBinding.inflate(inflater, container, false);
-        imageView = binding.image;
-        binding.image.setOnClickListener(v -> {
-
-            openGallery();
-        });
-
-
-//        ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-//                new ActivityResultCallback<ActivityResult>() {
-//                    @Override
-//                    public void onActivityResult(ActivityResult result) {
-//                        if (result.getResultCode() == requireActivity().RESULT_OK) {
-//
-//                            uri = result.getData();
-//                            Log.e("TAG", "onActivityResult: " + result.getData());
-//                        }
-//                    }
-//                });
-        String a ;
-        mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-                new ActivityResultCallback<Uri>() {
-                    @Override
-                    public void onActivityResult(Uri uri) {
-                        imageView.setImageURI(uri);
-                    }
-                });
-
+        binding.editText.setText(App.share.getForName());
+        click();
         return binding.getRoot();
     }
 
+
+    @SuppressLint("WrongConstant")
+    private void click() {
+        getImage();
+        binding.saveBtn.setOnClickListener(v -> {
+//            Snackbar.make(v, "Вы сохранили", Snackbar.LENGTH_SHORT).show();
+
+            View CustomToast = requireActivity().getLayoutInflater().inflate(R.layout.toast, null);
+            Toast toast = new Toast(requireContext());
+            toast.setView(CustomToast);
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.getGravity();
+            toast.show();
+
+            App.share.setForName(binding.editText.getText().toString());
+        });
+    }
+
+    private void getImage() {
+        imageView = binding.image;
+        binding.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProfileFragment.this.openGallery();
+            }
+        });
+        mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+                uri -> imageView.setImageURI(uri));
+    }
 
     private void openGallery() {
         mGetContent.launch("image/*");
 
     }
+
 }
