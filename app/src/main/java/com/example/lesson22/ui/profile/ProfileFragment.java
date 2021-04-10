@@ -66,14 +66,15 @@ public class ProfileFragment extends Fragment {
 
     private void getImage() {
         imageView = binding.image;
-        binding.image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ProfileFragment.this.openGallery();
-            }
-        });
+        binding.image.setOnClickListener(v ->
+                ProfileFragment.this.openGallery());
         mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-                uri -> imageView.setImageURI(uri));
+                new ActivityResultCallback<Uri>() {
+                    @Override
+                    public void onActivityResult(Uri uri) {
+                        imageView.setImageURI(uri);
+                    }
+                });
     }
 
     private void openGallery() {

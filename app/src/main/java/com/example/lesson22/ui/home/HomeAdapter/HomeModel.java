@@ -3,27 +3,36 @@ package com.example.lesson22.ui.home.HomeAdapter;
 import android.os.Parcel;
 import android.util.Log;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+@Entity
 public class HomeModel implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     private String name;
     private String number;
 
-    private DateFormat dateFormat = new SimpleDateFormat("dd MMMM HH : mm");
-    private String date = dateFormat.format(new Date());
-    public void setDate(String date) {
-        this.date = date;
-    }
+//    at(new Date());
+//    public void setDate(String date) {
+//        this.date = date;
+//    }
 
-    public String getDate() {
-        return date;
-    }
+//    public String getDate() {
+//        return date;
+//    }private DateFormat dateFormat = new SimpleDateFormat("dd MMMM HH : mm");
+//    private String date = dateFormat.form
 
-    private int id = new Random().nextInt();
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;

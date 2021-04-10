@@ -17,7 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lesson22.App;
+import com.example.lesson22.R;
 import com.example.lesson22.databinding.FragmentBoardBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -114,7 +116,11 @@ public class BoardFragment extends Fragment implements Click {
 
         });
         binding.getIt.setOnClickListener(v -> {
-            navController.navigateUp();
+            if (FirebaseAuth.getInstance().getCurrentUser() == null){
+                navController.navigate(R.id.authFragment);
+            }else {
+                navController.navigateUp();
+            }
             Log.e("TAG", "onPageSelected:  ");
         });
     }

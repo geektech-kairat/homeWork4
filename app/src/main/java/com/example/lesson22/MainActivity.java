@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         if (!App.share.isBoardShown()){
             navController.navigate(R.id.boardFragment);
         }
+       else if (FirebaseAuth.getInstance().getCurrentUser() == null){
+            navController.navigate(R.id.authFragment);
+
+        }
+
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {

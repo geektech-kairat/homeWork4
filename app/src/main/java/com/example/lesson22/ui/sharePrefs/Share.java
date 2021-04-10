@@ -8,6 +8,7 @@ public class Share {
     public static final String APP_PREFERENCES = "my settings";
     public static final String BOOLEAN_FOR_SHOW_OPEN = "show";
     public static final String FOR_NAME = "name";
+    public static final String SAVE_SORT = "sort";
     private SharedPreferences sharedPreferences = null;
 
 
@@ -32,4 +33,10 @@ public class Share {
         return sharedPreferences.getString(FOR_NAME, "");
     }
 
+    public void saveSort(Boolean saveSort){
+        sharedPreferences.edit().putBoolean(SAVE_SORT, saveSort).apply();
+    }
+    public Boolean getSaveSort(){
+        return sharedPreferences.getBoolean(SAVE_SORT, false);
+    }
 }
