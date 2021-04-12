@@ -103,9 +103,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 //            binding.date.setText(homeModel.getDate());
 
             binding.getRoot().setOnClickListener(v -> {
-                App.fillDatabase.fillDao().delete(list.get(getAdapterPosition()));
-                notifyItemChanged(getAdapterPosition());
-//                listen.setDataForForm(homeModel, getAdapterPosition());
+
+                listen.setDataForForm(homeModel, getAdapterPosition());
             });
 
             binding.getRoot().setOnLongClickListener(v -> {

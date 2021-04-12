@@ -116,12 +116,12 @@ public class BoardFragment extends Fragment implements Click {
 
         });
         binding.getIt.setOnClickListener(v -> {
-            if (FirebaseAuth.getInstance().getCurrentUser() == null){
+//            if (FirebaseAuth.getInstance().getCurrentUser() == null){
                 navController.navigate(R.id.authFragment);
-            }else {
-                navController.navigateUp();
-            }
-            Log.e("TAG", "onPageSelected:  ");
+//            }else {
+//                navController.navigateUp();
+//                Log.e("TAG", "onPageSelected:  ");
+//            }
         });
     }
 

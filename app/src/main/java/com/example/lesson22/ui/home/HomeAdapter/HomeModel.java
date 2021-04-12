@@ -39,8 +39,10 @@ public class HomeModel implements Serializable {
     }
 
     public HomeModel(String name, String number) {
+
         this.name = name;
         this.number = number;
+
     }
 
     public String getName() {

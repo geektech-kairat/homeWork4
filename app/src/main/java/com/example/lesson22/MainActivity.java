@@ -36,12 +36,16 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
         if (!App.share.isBoardShown()){
+            getSupportActionBar().hide();
             navController.navigate(R.id.boardFragment);
-        }
-       else if (FirebaseAuth.getInstance().getCurrentUser() == null){
-            navController.navigate(R.id.authFragment);
+        }else{
+            getSupportActionBar().hide();
 
         }
+//        if (FirebaseAuth.getInstance().getCurrentUser() == null){
+//            navController.navigate(R.id.authFragment);
+//
+//        }
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
@@ -55,9 +59,17 @@ public class MainActivity extends AppCompatActivity {
                 if (list.contains(destination.getId())) {
 
                     navView.setVisibility(View.VISIBLE);
+                    getSupportActionBar().show();
                 } else {
                     navView.setVisibility(View.INVISIBLE);
+
+
                 }
+//                if (R.id.navigation_home == destination.getId()){
+//                    getSupportActionBar().hide();
+//                }else {
+//                    getSupportActionBar().show();
+//                }
             }
         });
 
@@ -68,4 +80,5 @@ public class MainActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
     }
+
 }

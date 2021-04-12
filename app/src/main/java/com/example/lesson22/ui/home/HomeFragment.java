@@ -18,6 +18,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.lesson22.App;
+import com.example.lesson22.MainActivity;
 import com.example.lesson22.R;
 import com.example.lesson22.databinding.FragmentHomeBinding;
 import com.example.lesson22.ui.home.HomeAdapter.HomeAdapter;
@@ -52,6 +53,8 @@ public class HomeFragment extends Fragment implements Listen {
                 homeAdapter.addList(homeModelList);
             }
         });
+
+
 
 
         binding.rv.setAdapter(homeAdapter);
