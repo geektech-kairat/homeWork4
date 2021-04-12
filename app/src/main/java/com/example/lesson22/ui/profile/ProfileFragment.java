@@ -51,7 +51,6 @@ public class ProfileFragment extends Fragment {
     private void click() {
         getImage();
         binding.saveBtn.setOnClickListener(v -> {
-//            Snackbar.make(v, "Вы сохранили", Snackbar.LENGTH_SHORT).show();
 
             View CustomToast = requireActivity().getLayoutInflater().inflate(R.layout.toast, null);
             Toast toast = new Toast(requireContext());
@@ -60,7 +59,7 @@ public class ProfileFragment extends Fragment {
             toast.getGravity();
             toast.show();
 
-            App.share.setForName(binding.editText.getText().toString());
+            App.share.setForName(binding.editText.getText().toString().trim());
         });
     }
 

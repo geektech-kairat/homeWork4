@@ -26,8 +26,14 @@ public interface FillDao {
     @Query("SELECT * FROM homemodel")
     LiveData<List<HomeModel>> getAll();
 
-//    @Query("SELECT * FROM homemodel ORDER by name ASC")
-//    List<HomeModel> getAllBySort();
+    @Query("SELECT * FROM homemodel ORDER by name ASC")
+    List<HomeModel> getAllBySort();
+
+    @Query("SELECT * FROM homemodel ORDER by name DESC")
+    List<HomeModel> getAllBySortRes();
+
+    @Query("DELETE FROM homemodel")
+    void deleteAll();
 
 
 }

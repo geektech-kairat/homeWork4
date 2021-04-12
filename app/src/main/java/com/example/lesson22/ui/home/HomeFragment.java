@@ -3,10 +3,13 @@ package com.example.lesson22.ui.home;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -24,6 +27,7 @@ import com.example.lesson22.databinding.FragmentHomeBinding;
 import com.example.lesson22.ui.home.HomeAdapter.HomeAdapter;
 import com.example.lesson22.ui.home.HomeAdapter.HomeModel;
 import com.example.lesson22.ui.home.HomeAdapter.Listen;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +40,12 @@ public class HomeFragment extends Fragment implements Listen {
     private HomeAdapter homeAdapter;
     private List<HomeModel> list = new ArrayList<>();
     private int id;
+    private MainActivity mainActivity = new MainActivity();
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
         homeAdapter = new HomeAdapter(this);
     }
@@ -53,8 +59,6 @@ public class HomeFragment extends Fragment implements Listen {
                 homeAdapter.addList(homeModelList);
             }
         });
-
-
 
 
         binding.rv.setAdapter(homeAdapter);
@@ -163,5 +167,30 @@ public class HomeFragment extends Fragment implements Listen {
         });
         adg.setNegativeButton(negative, null);
         adg.show();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.home_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.sortAZ) {
+            homeAdapter.addList(App.fillDatabase.fillDao().getAllBySort());
+            binding.rv.setAdapter(homeAdapter);
+            Snackbar.make(requireView(), "Отсортирован A-Я", Snackbar.LENGTH_SHORT).show();
+
+        } else if (item.getItemId() == R.id.sortZA) {
+            homeAdapter.addList(App.fillDatabase.fillDao().getAllBySortRes());
+            binding.rv.setAdapter(homeAdapter);
+            Snackbar.make(requireView(), "Отсортирован Я-А", Snackbar.LENGTH_SHORT).show();
+
+        }
+        else if (item.getItemId() == R.id.deleteAll){
+            App.fillDatabase.fillDao().deleteAll();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
