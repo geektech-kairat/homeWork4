@@ -23,7 +23,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
             "интересные мысли и творческое вдохновение.", "Если вы боретесь со стрессом или депрессией," +
             " попробуйте завести личный дневник", "Необязательно соблюдать правила орфографии и пунктуации. " +
             "Суть ведения дневника в том, чтобы писать не думая. "};
-    private Integer[] gif = new Integer[]{R.drawable.gif1, R.drawable.gif2, R.drawable.gif3};
+    private Integer[] gif = new Integer[]{R.raw.note,R.raw.note2,R.raw.note3};
 
 
     public BoardAdapter(Click click) {
@@ -58,7 +58,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
 
         public void bind(int position, Click click) {
             binding.title.setText(text[position]);
-            binding.gifSet.setImageResource(gif[position]);
+            binding.gifSet.setAnimation(gif[position]);
         }
     }
 }

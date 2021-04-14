@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    >
-
-    <pl.droidsonroids.gif.GifImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        android:src="@drawable/check"
+        app:lottie_rawRes="@raw/che"
+        app:lottie_repeatCount="0"
+        app:lottie_loop="true"
         android:paddingEnd="20dp"
+        app:lottie_autoPlay="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="10dp"
-        android:id="@+id/check"/>
+        android:paddingStart="25dp"
+        android:id="@+id/check2"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

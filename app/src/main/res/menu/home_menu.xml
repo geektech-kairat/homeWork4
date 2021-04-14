@@ -8,7 +8,7 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/sortZA"
-        android:title="Сортировка А-Я"
+        android:title="Сортировка Я-А"
         app:showAsAction="never" />
     <item
         android:id="@+id/deleteAll"

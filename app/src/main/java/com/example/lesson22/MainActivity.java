@@ -43,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
         if (!App.share.isBoardShown()) {
             getSupportActionBar().hide();
             navController.navigate(R.id.boardFragment);
-        } else {
-            getSupportActionBar().hide();
+
 
         }
 //        if (FirebaseAuth.getInstance().getCurrentUser() == null){
@@ -62,18 +61,16 @@ public class MainActivity extends AppCompatActivity {
                 list.add(R.id.navigation_profile2);
 
                 if (list.contains(destination.getId())) {
+//                    getActionBar().hide();
 
                     navView.setVisibility(View.VISIBLE);
                     getSupportActionBar().show();
                 } else {
+
                     navView.setVisibility(View.INVISIBLE);
 
 
-                }
-                if (R.id.navigation_home == destination.getId()) {
 
-                } else {
-                    getSupportActionBar().show();
                 }
             }
         });
