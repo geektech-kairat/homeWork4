@@ -4,70 +4,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/holderItem"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
+    android:layout_height="75dp"
     android:layout_margin="10dp">
 
 
+    <TextView
+        android:id="@+id/date"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="25 марта"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:id="@+id/date"
-            android:textColor="#A54D4D"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_margin="10dp"/>
-        <TextView
-            android:id="@+id/nameTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Заголовок : "
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="25 марта"
+        android:textColor="#A54D4D"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/nameTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nameTxt" />
+
+    <TextView
+        android:id="@+id/editDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="25 марта"
+        android:textColor="#906444"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/deckTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/deckTxt" />
+    <ImageView
+        android:layout_marginEnd="5dp"
+        android:id="@+id/editDateIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_edit_note_24"
+        app:layout_constraintTop_toTopOf="@id/editDate"
+        app:layout_constraintEnd_toStartOf="@+id/editDate"/>
+
+    <ImageView
+
+        android:id="@+id/addNote"
+        android:layout_marginEnd="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_note_add_24"
+        app:layout_constraintEnd_toStartOf="@+id/date"
+        app:layout_constraintTop_toTopOf="@+id/date"
+        android:contentDescription="TODO" />
 
 
-        <TextView
-            android:id="@+id/nameItem"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginStart="68dp"
-            android:layout_marginTop="16dp"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/nameTxt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/nameTxt"
-            app:layout_constraintTop_toTopOf="@id/nameTxt"
-            tools:text="Kairat" />
+    <TextView
+        android:id="@+id/nameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Заголовок : "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/numberTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Описание: "
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/nameTxt"
-            app:layout_constraintTop_toBottomOf="@id/nameTxt" />
 
-        <TextView
-            android:id="@+id/numberItem"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:singleLine="true"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/numberTxt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/numberTxt"
-            app:layout_constraintTop_toTopOf="@id/numberTxt"
-            tools:text="709089032" />
+    <TextView
+        android:id="@+id/nameItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="16dp"
+        android:textSize="15sp"
+        android:singleLine="true"
+
+        app:layout_constraintBottom_toBottomOf="@id/nameTxt"
+        app:layout_constraintEnd_toStartOf="@+id/addNote"
+
+        app:layout_constraintStart_toEndOf="@id/nameTxt"
+        app:layout_constraintTop_toTopOf="@id/nameTxt"
+        tools:text="Kairat" />
+
+    <TextView
+        android:id="@+id/deckTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Описание: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/nameTxt"
+        app:layout_constraintTop_toBottomOf="@id/nameTxt" />
+
+    <TextView
+        android:id="@+id/deck"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:singleLine="true"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/deckTxt"
+        app:layout_constraintEnd_toStartOf="@+id/editDateIv"
+        app:layout_constraintStart_toEndOf="@id/deckTxt"
+        app:layout_constraintTop_toTopOf="@id/deckTxt"
+        tools:text="709089032" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

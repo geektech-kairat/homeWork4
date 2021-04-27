@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/numberItem"
+        android:id="@+id/deck"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         android:layout_marginHorizontal="60dp"
         android:layout_marginTop="20dp"
         android:text="сохранить"
-        app:layout_constraintTop_toBottomOf="@id/numberItem" />
+        app:layout_constraintTop_toBottomOf="@id/deck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

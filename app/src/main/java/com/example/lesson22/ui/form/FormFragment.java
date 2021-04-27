@@ -37,17 +37,17 @@ public class FormFragment extends Fragment {
     public void initListeners() {
 
         binding.saveButton.setOnClickListener(v -> {
-            if (binding.nameItem.getText().toString().isEmpty() && binding.numberItem.getText().toString().isEmpty()) {
+            if (binding.nameItem.getText().toString().isEmpty() && binding.deck.getText().toString().isEmpty()) {
                 binding.nameItem.setError(s);
-                binding.numberItem.setError(s);
+                binding.deck.setError(s);
             } else if (binding.nameItem.getText().toString().isEmpty()) {
                 binding.nameItem.setError(s);
-            } else if (binding.numberItem.getText().toString().isEmpty()) {
-                binding.numberItem.setError(s);
+            } else if (binding.deck.getText().toString().isEmpty()) {
+                binding.deck.setError(s);
             } else {
                 Bundle bundle = new Bundle();
                 bundle.putString("name", binding.nameItem.getText().toString());
-                bundle.putString("number", binding.numberItem.getText().toString());
+                bundle.putString("number", binding.deck.getText().toString());
                 bundle.putInt("id", id);
                 getParentFragmentManager().setFragmentResult("key", bundle);
                 close();
@@ -65,7 +65,7 @@ public class FormFragment extends Fragment {
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 if (requestKey.equals("2") && result != null)
                     Log.e("TAG", "onFragmentResult:  " + result.getString("number1"));
-                binding.numberItem.setText(result.getString("number1"));
+                binding.deck.setText(result.getString("number1"));
                 binding.nameItem.setText(result.getString("name1"));
                 id = result.getInt("id");
             }

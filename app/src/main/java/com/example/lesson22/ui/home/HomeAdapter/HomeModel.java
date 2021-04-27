@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.util.Log;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -20,6 +21,18 @@ public class HomeModel implements Serializable {
     private String name;
     private String number;
 
+    private String date;
+    private String editDate = "Не был изменен";
+
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
 //    at(new Date());
 //    public void setDate(String date) {
 //        this.date = date;
@@ -29,7 +42,6 @@ public class HomeModel implements Serializable {
 //        return date;
 //    }private DateFormat dateFormat = new SimpleDateFormat("dd MMMM HH : mm");
 //    private String date = dateFormat.form
-
     public void setId(int id) {
         this.id = id;
     }
@@ -38,12 +50,7 @@ public class HomeModel implements Serializable {
         return id;
     }
 
-    public HomeModel(String name, String number) {
 
-        this.name = name;
-        this.number = number;
-
-    }
 
     public String getName() {
         return name;
@@ -63,4 +70,27 @@ public class HomeModel implements Serializable {
     }
 
 
+
+
+    public HomeModel(String name, String number, String date) {
+        this.name = name;
+        this.number = number;
+        this.date = date;
+    }
+
+    public String getEditDate() {
+        return editDate;
+    }
+
+    public void setEditDate(String editDate) {
+        this.editDate = editDate;
+    }
+
+    @Ignore
+    public HomeModel(String name, String number, String date, String editDate) {
+        this.name = name;
+        this.number = number;
+        this.date = date;
+        this.editDate = editDate;
+    }
 }

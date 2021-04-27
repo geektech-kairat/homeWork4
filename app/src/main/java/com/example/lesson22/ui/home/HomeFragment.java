@@ -29,7 +29,10 @@ import com.example.lesson22.ui.home.HomeAdapter.HomeModel;
 import com.example.lesson22.ui.home.HomeAdapter.Listen;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements Listen {
@@ -41,7 +44,7 @@ public class HomeFragment extends Fragment implements Listen {
     private List<HomeModel> list = new ArrayList<>();
     private int id;
     private MainActivity mainActivity = new MainActivity();
-
+    private String s;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,22 +82,28 @@ public class HomeFragment extends Fragment implements Listen {
     }
 
     private void getDataInForm() {
+        DateFormat dateFormat = new SimpleDateFormat("dd MMMM HH : mm");
+        s = dateFormat.format(new Date());
         //добавление
         getParentFragmentManager().setFragmentResultListener("key",
                 getViewLifecycleOwner(), new FragmentResultListener() {
                     @Override
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+
                         String a = result.getString("name");
                         String b = result.getString("number");
+
                         id = result.getInt("id");
 
                         HomeModel model = homeAdapter.getModelToId(id);
                         if (model != null) {
                             model.setName(a);
                             model.setNumber(b);
+                            model.setEditDate(s);
                             App.fillDatabase.fillDao().update(model);
                         } else {
-                            App.fillDatabase.fillDao().insert(new HomeModel(a, b));
+
+                            App.fillDatabase.fillDao().insert(new HomeModel(a, b,s));
                         }
                     }
                 });

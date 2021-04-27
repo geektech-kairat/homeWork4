@@ -1,23 +1,24 @@
 package com.example.lesson22.ui.home.HomeAdapter;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.lesson22.App;
 import com.example.lesson22.databinding.ItemLayoutBinding;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
     private ItemLayoutBinding binding;
@@ -98,8 +99,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
         public void onBind(HomeModel homeModel, Listen listen) {
 
 
+
+            binding.date.setText(homeModel.getDate());
+            binding.editDate.setText(homeModel.getEditDate());
+//            Log.e(TAG, "onBind: "+ );
             binding.nameItem.setText(homeModel.getName());
-            binding.numberItem.setText(homeModel.getNumber());
+            binding.deck.setText(homeModel.getNumber());
+
+
 //            binding.date.setText(homeModel.getDate());
 
             binding.getRoot().setOnClickListener(v -> {
